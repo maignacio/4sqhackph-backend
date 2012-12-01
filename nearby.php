@@ -18,7 +18,7 @@
    foreach ($venues as $venue)
    {
        //$details = get_venue($venue['location']);
-       $return_array[] = array($venue['id'] ,$venue['name'] ,$venue['location']['lng'], $venue['location']['lat']);
+       $return_array[] = array("id"=>$venue['id'] , "name"=>$venue['name'] ,"long"=>$venue['location']['lng'], "lat"=>$venue['location']['lat']);
    }
 
    echo json_encode($return_array);

@@ -16,10 +16,10 @@
         $id = $venue['id'];
         //echo "$id <br>";
         $venue_details = get_all_venue_details($redis, $id);
-        $venue_details['user_pic'] = get_user_pic($redis, $venue_details['user']);
-        
+
         if (0 != sizeof($venue_details))
         {
+            $venue_details['user_pic'] = get_user_pic($redis, $venue_details['user']);
             $return_array[] = $venue_details;
 	    }
     }
