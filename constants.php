@@ -11,4 +11,6 @@ define('START', 'start_time');
 define('END', 'end_time');
 define('LONGITUDE', 'long');
 define('LATITUDE', 'lat');
+define('NAME', 'name');
+define('USERNAME', 'username');
 ?>
