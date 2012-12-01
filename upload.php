@@ -19,4 +19,5 @@
     $redis = connect_to_redis();
 
     set_venue_details($redis, $venue_id, $venue_details);
+    close_redis_connection($redis);
 ?>

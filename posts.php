@@ -5,16 +5,18 @@
 
     $long = $_REQUEST['long'];
     $lat = $_REQUEST['lat'];
-    
-    $venues = get_venues($long, $lat);
+    $name = $_REQUEST['name']; 
+
+    $venues = get_venues($long, $lat, $name);
     
     $redis = connect_to_redis();
     $return_array = array();
     foreach ($venues as $venue)
     {
         $id = $venue['id'];
-        echo "$id <br>";
+        //echo "$id <br>";
         $venue_details = get_all_venue_details($redis, $id);
+        $venue_details['user_pic'] = get_user_pic($redis, $venue_details['user']);
         
         if (0 != sizeof($venue_details))
         {

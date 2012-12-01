@@ -1,16 +1,24 @@
 <?php
-define('RADIUS', 1000);
+define('RADIUS', 10000);
 require_once("FoursquareAPI.class.php");
 
 function get_venues($long, $lat, $name="")
 {
     $foursquare = new FoursquareAPI(CLIENT_ID, CLIENT_SECRET);
     // Prepare parameters
-	$params = array("ll"=>"$long, $lat", "query"=>"$name", "radius"=>RADIUS);
+    $params = array("ll"=>"$lat,$long");
+    if ("" != $name)
+    {
+	$params["query"] = "$name";
+    }
+    else
+    {
+        $params["radius"] = RADIUS;
+    }
 	
-	// Perform a request to a public resource
-	$response = $foursquare->GetPublic("venues/search",$params);
-	$array_response = json_decode($response, true);
+    // Perform a request to a public resource
+    $response = $foursquare->GetPublic("venues/search",$params);
+    $array_response = json_decode($response, true);
     
     //$venues = $array_response->venues;
     //var_dump($array_response);
