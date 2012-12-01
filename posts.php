@@ -7,9 +7,10 @@
     $lat = $_REQUEST['lat'];
     $name = $_REQUEST['name']; 
 
-    $venues = get_venues($long, $lat, $name);
-    
     $redis = connect_to_redis();
+
+    $venues = get_venues($long, $lat, $name);
+
     $return_array = array();
     foreach ($venues as $venue)
     {
@@ -26,4 +27,5 @@
     
     //var_dump($return_array);
     echo json_encode($return_array);
+    close_redis_connection($redis);
 ?>

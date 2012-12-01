@@ -33,7 +33,7 @@
 
 	function upvote($redis, $venue_id){
 		$key = "rankings";
-		$redis->zAdd($redis, $venue_id);
+		$redis->zIncrBy($key,1, $venue_id);
 	}
 
 	function downvote($redis, $venue_id){
@@ -49,7 +49,7 @@
 	}
 
 	function get_user_pic($redis, $username){
-		$key = "user:".$username; 
+		$key = "user:".urlencode($username); 
 		$pic_url = $redis->get($key);
 		return($pic_url);
 	}
